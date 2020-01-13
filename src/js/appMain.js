@@ -1,4 +1,11 @@
-import test from './helloWebpack';
-import '../css/site.css';
+import Vue from 'vue';
 
-test();
+var vm = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue from Webpack'
+    },
+    created() {
+        console.log('Created() root Vue instance');
+    }
+});

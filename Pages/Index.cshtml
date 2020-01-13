@@ -9,12 +9,11 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<div class="kitten">
-
+<div id='app'>
+    <input type='text' v-model='message' />
+    <p>{{message}}</p>
 </div>
 
-<div class='cute-font'>
-    This is cute font (hopefully).
-</div>
-
-<script src='/js/ballz.js'></script>
+@section Scripts {
+    <script src='/js/appMain.bundle.js'></script>
+}

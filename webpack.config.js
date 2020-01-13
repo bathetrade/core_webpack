@@ -1,18 +1,43 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-    mode: 'production',
-    entry: './src/js/appMain.js',
+    mode: 'development',
+    entry: {
+        appMain: './src/js/appMain.js'
+    },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
     output: {
         path: path.resolve(__dirname, 'wwwroot'),
-        filename: 'js/ballz.js'
+        filename: 'js/[name].bundle.js'
     },
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                use: [
+                    'vue-loader'
+                ]
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    'vue-style-loader',
                     'css-loader'
                 ]
             },
@@ -34,5 +59,9 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new VueLoaderPlugin()
+    ]
 };
