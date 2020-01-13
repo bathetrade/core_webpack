@@ -1,11 +1,9 @@
 import Vue from 'vue';
+import hello from './components/hello.vue';
 
 var vm = new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue from Webpack'
+    components: {
+        hello
     },
-    created() {
-        console.log('Created() root Vue instance');
-    }
-});
+    el: '#app'
+})
